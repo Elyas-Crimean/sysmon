@@ -10,6 +10,8 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: ~1.22
+      - name: Check out repository code
+        uses: actions/checkout@v4
       - name: Linters
         uses: golangci/golangci-lint-action@v3
         with:
@@ -36,5 +38,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: ^1.22
+      - name: Check out code
+        uses: actions/checkout@v3
       - name: build linux binary
         run: make build
