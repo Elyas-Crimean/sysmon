@@ -1,0 +1,40 @@
+name: Otus project pipeline
+
+on: [push]
+
+jobs:
+  linter:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ~1.22
+      - name: Linters
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.56.2
+
+  tests:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ^1.22
+
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Unit tests
+        run: go test -v -count=1 -race -timeout=1m ./...
+
+  build:    
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ^1.22
+      - name: build linux binary
+        run: make build
