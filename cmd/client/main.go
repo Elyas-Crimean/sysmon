@@ -13,7 +13,7 @@ func main() {
 	host := pflag.StringP("host", "h", "127.0.0.1:8000", "сетевой адрес и порт сервера мониторинга")
 	interval := pflag.DurationP("interval", "i", 5*time.Second, "интервал между выдачей значений параметров (1s..30s)")
 	window := pflag.DurationP("window", "w", 15*time.Second, "окно для усреднения выборок параметров (5s..2m)")
-
+	pflag.Parse()
 	if *interval < 1000*time.Millisecond || *interval > 30000*time.Millisecond {
 		fmt.Println("недопустимый интервал")
 		return
