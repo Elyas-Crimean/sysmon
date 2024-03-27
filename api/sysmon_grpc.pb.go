@@ -70,21 +70,19 @@ func (x *sysmonProbeQueryClient) Recv() (*Data, error) {
 }
 
 // SysmonServer is the server API for Sysmon service.
-// All implementations must embed UnimplementedSysmonServer
+// All implementations should embed UnimplementedSysmonServer
 // for forward compatibility
 type SysmonServer interface {
 	ProbeQuery(*Query, Sysmon_ProbeQueryServer) error
-	mustEmbedUnimplementedSysmonServer()
 }
 
-// UnimplementedSysmonServer must be embedded to have forward compatible implementations.
+// UnimplementedSysmonServer should be embedded to have forward compatible implementations.
 type UnimplementedSysmonServer struct {
 }
 
 func (UnimplementedSysmonServer) ProbeQuery(*Query, Sysmon_ProbeQueryServer) error {
 	return status.Errorf(codes.Unimplemented, "method ProbeQuery not implemented")
 }
-func (UnimplementedSysmonServer) mustEmbedUnimplementedSysmonServer() {}
 
 // UnsafeSysmonServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to SysmonServer will

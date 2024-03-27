@@ -7,4 +7,4 @@ sysmon.exe:
 client:
 	go build -v -o bin/client ./cmd/client
 grpc:
-	protoc -I./api:/usr/include/google --go_out=api --go-grpc_out=api api/sysmon.proto
+	protoc -I./api:/usr/include/google --go_out=api --go-grpc_out=require_unimplemented_servers=false:api api/sysmon.proto

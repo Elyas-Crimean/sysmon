@@ -41,5 +41,5 @@ func main() {
 	if srv == nil {
 		return
 	}
-	srv.Run()
+	srv.Run(st)
 }
